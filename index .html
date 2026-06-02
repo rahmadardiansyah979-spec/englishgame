@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+  <title>English Game</title>
+
+  <style>
+
+    body{
+      margin:0;
+      padding:0;
+      font-family:Arial;
+      color:white;
+      overflow:hidden;
+      background:black;
+    }
+
+    .page{
+      display:none;
+      width:100%;
+      height:100vh;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .active{
+      display:flex;
+    }
+
+    .box{
+      width:100%;
+      height:100vh;
+
+      background:rgba(0,0,0,0.35);
+
+      display:flex;
+      flex-direction:column;
+
+      justify-content:center;
+      align-items:center;
+
+      text-align:center;
+    }
+
+    /* BACKGROUND HOME */
+
+    #home{
+
+      background-image:url('kaka.gif');
+
+      background-size:cover;
+
+      background-position:center;
+
+      background-repeat:no-repeat;
+    }
+
+    /* BACKGROUND LOGIN */
+
+    #login{
+
+      background-image:url('lolo.gif');
+
+      background-size:cover;
+
+      background-position:center;
+
+      background-repeat:no-repeat;
+    }
+
+    /* BACKGROUND WELCOME */
+
+    #welcome{
+
+      background-image:url('gekol.gif');
+
+      background-size:cover;
+
+      background-position:center;
+
+      background-repeat:no-repeat;
+    }
+
+    /* BACKGROUND MENU */
+
+    #menu{
+
+      background-image:url('geeko.jpg');
+
+      background-size:cover;
+
+      background-position:center;
+
+      background-repeat:no-repeat;
+    }
+
+    h1{
+      font-size:50px;
+      margin-bottom:20px;
+      text-shadow:2px 2px 5px black;
+    }
+
+    p{
+      font-size:22px;
+      text-shadow:2px 2px 5px black;
+    }
+
+    input{
+      width:300px;
+      padding:15px;
+      margin:10px;
+      border:none;
+      border-radius:10px;
+      font-size:18px;
+      text-align:center;
+    }
+
+    button{
+      padding:15px 25px;
+      margin:10px;
+      border:none;
+      border-radius:15px;
+      font-size:20px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+      color:white;
+    }
+
+    button:hover{
+      transform:scale(1.08);
+    }
+
+    .question{
+      font-size:35px;
+      margin:20px;
+      white-space:pre-line;
+    }
+
+    .level{
+      font-size:28px;
+      color:yellow;
+      font-weight:bold;
+    }
+
+    .score{
+      font-size:25px;
+      margin-top:20px;
+    }
+
+    #result{
+      font-size:24px;
+      margin-top:20px;
+    }
+
+    /* ANIMASI KUCING */
+
+    #cat{
+      animation:kucing 2s infinite;
+    }
+
+    @keyframes kucing{
+
+      0%{
+        transform:translateY(0px);
+      }
+
+      50%{
+        transform:translateY(-15px);
+      }
+
+      100%{
+        transform:translateY(0px);
+      }
+    }
+
+    /* MENU GAME STYLE */
+
+    .game-title{
+
+      font-size:75px;
+
+      font-weight:bold;
+
+      color:#ffd95c;
+
+      text-shadow:
+      0 0 10px white,
+      0 0 20px gold,
+      4px 4px 10px black;
+
+      margin-bottom:10px;
+    }
+
+    .game-subtitle{
+
+      font-size:26px;
+
+      margin-bottom:40px;
+
+      text-shadow:2px 2px 5px black;
+    }
+
+    .game-btn{
+
+      width:320px;
+
+      padding:18px;
+
+      margin:14px;
+
+      border:none;
+
+      border-radius:20px;
+
+      font-size:28px;
+
+      font-weight:bold;
+
+      color:white;
+
+      cursor:pointer;
+
+      transition:0.3s;
+    }
+
+    .game-btn:hover{
+
+      transform:scale(1.1);
+    }
+
+    .easy{
+
+      background:linear-gradient(to bottom,#00ff88,#008844);
+
+      box-shadow:0 0 20px #00ff88;
+    }
+
+    .medium{
+
+      background:linear-gradient(to bottom,#ffcc33,#cc7700);
+
+      box-shadow:0 0 20px orange;
+    }
+
+    .hard{
+
+      background:linear-gradient(to bottom,#ff4444,#990000);
+
+      box-shadow:0 0 20px red;
+    }
+
+    .chat{
+
+      background:linear-gradient(to bottom,#6666ff,#222288);
+
+      box-shadow:0 0 20px blue;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<!-- HOME -->
+
+<div id="home" class="page active">
+
+  <div class="box">
+
+    <h1>🎮 ENGLISH GAME</h1>
+
+    <p>Belajar Bahasa Inggris Dengan Seru</p>
+
+    <button
+      style="background:gold;color:black;"
+      onclick="checkAccount()">
+
+      Masuk Game
+
+    </button>
+
+  </div>
+
+</div>
+
+<!-- REGISTER -->
+
+<div id="register" class="page">
+
+  <div class="box">
+
+    <h1>📝 DAFTAR AKUN</h1>
+
+    <input type="text"
+      id="registerName"
+      placeholder="Masukkan Username">
+
+    <input type="password"
+      id="registerPassword"
+      placeholder="Masukkan Password">
+
+    <button
+      style="background:green;"
+      onclick="register()">
+
+      Daftar
+
+    </button>
+
+  </div>
+
+</div>
+
+<!-- LOGIN -->
+
+<div id="login" class="page">
+
+  <div class="box">
+
+    <h1>🔐 LOGIN</h1>
+
+    <div id="loginUser"></div>
+
+    <input type="password"
+      id="loginPassword"
+      placeholder="Masukkan Password">
+
+    <button
+      style="background:blue;"
+      onclick="login()">
+
+      Login
+
+    </button>
+
+  </div>
+
+</div>
+
+<!-- WELCOME -->
+
+<div id="welcome" class="page">
+
+  <div class="box">
+
+    <img
+      src="http://127.0.0.1:5500/coko.png"
+      width="180"
+      id="cat">
+
+    <h1> Hallo!</h1>
+
+    <p>
+      Selamat datang di game ini <br>
+      Apakah kamu siap bermain?
+    </p>
+
+    <button
+      style="background:orange;"
+      onclick="openPage('menu')">
+
+      START GAME
+
+    </button>
+
+  </div>
+
+</div>
+
+<!-- MENU -->
+
+<div id="menu" class="page">
+
+  <div class="box">
+
+    <div class="game-title">
+      🏠 HOME GAME
+    </div>
+
+    <div class="game-subtitle">
+      Pilih Permainan Yang Ingin Kamu Mainkan
+    </div>
+
+    <button
+      class="game-btn easy"
+      onclick="startGame('mudah')">
+
+      💎 MUDAH
+
+    </button>
+
+    <button
+      class="game-btn medium"
+      onclick="startGame('sedang')">
+
+      🔶 SEDANG
+
+    </button>
+
+    <button
+      class="game-btn hard"
+      onclick="startGame('susah')">
+
+      😈 SUSAH
+
+    </button>
+
+    <button
+      class="game-btn chat"
+      onclick="startGame('percakapan')">
+
+      🎭 PERCAKAPAN
+
+    </button>
+
+  </div>
+
+</div>
+
+<!-- GAME -->
+
+<div id="game" class="page">
+
+  <div class="box">
+
+    <h1>📚 ENGLISH QUIZ</h1>
+
+    <div class="level" id="level">
+      Level 1
+    </div>
+
+    <div class="question" id="question">
+      Pertanyaan
+    </div>
+
+    <input type="text"
+      id="answer"
+      placeholder="Ketik Jawaban">
+
+    <button
+      style="background:purple;"
+      onclick="checkAnswer()">
+
+      Jawab
+
+    </button>
+
+    <div id="result"></div>
+
+    <div class="score" id="score">
+      Skor : 0
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+  const gameData = {
+
+    mudah:[
+
+      {q:"Bahasa Inggris dari Kucing",a:"cat"},
+      {q:"Bahasa Inggris dari Anjing",a:"dog"},
+      {q:"Bahasa Inggris dari Buku",a:"book"},
+      {q:"Bahasa Inggris dari Rumah",a:"house"},
+      {q:"Bahasa Inggris dari Mobil",a:"car"},
+      {q:"Bahasa Inggris dari Sekolah",a:"school"},
+      {q:"Bahasa Inggris dari Air",a:"water"},
+      {q:"Bahasa Inggris dari Api",a:"fire"},
+      {q:"Bahasa Inggris dari Meja",a:"table"},
+      {q:"Bahasa Inggris dari Kursi",a:"chair"}
+
+    ],
+
+    sedang:[
+
+      {q:"Apa arti Beautiful",a:"cantik"},
+      {q:"Apa arti Strong",a:"kuat"},
+      {q:"Apa arti Fast",a:"cepat"},
+      {q:"Apa arti Smart",a:"pintar"},
+      {q:"Apa arti Happy",a:"senang"},
+      {q:"Apa arti Sad",a:"sedih"},
+      {q:"Apa arti Tall",a:"tinggi"},
+      {q:"Apa arti Small",a:"kecil"},
+      {q:"Apa arti Big",a:"besar"},
+      {q:"Apa arti Clean",a:"bersih"}
+
+    ],
+
+    susah:[
+
+      {q:"Lengkapi: I ___ a student",a:"am"},
+      {q:"Lengkapi: She ___ happy",a:"is"},
+      {q:"Lengkapi: They ___ playing",a:"are"},
+      {q:"Translate: Saya suka belajar",a:"i like studying"},
+      {q:"Translate: Kami bermain bola",a:"we play football"},
+      {q:"Translate: Dia pergi ke sekolah",a:"he goes to school"},
+      {q:"Translate: Saya sedang makan",a:"i am eating"},
+      {q:"Translate: Mereka sedang belajar",a:"they are studying"},
+      {q:"Translate: Ayah saya bekerja",a:"my father works"},
+      {q:"Translate: Saya membaca buku",a:"i read a book"}
+
+    ],
+
+    percakapan:[
+
+      {
+        q:"A: Hello, how are you?\nB: I am ___",
+        a:"fine"
+      },
+
+      {
+        q:"A: What is your name?\nB: My ___ Rahmad",
+        a:"name is"
+      },
+
+      {
+        q:"A: Where do you live?\nB: I ___ in Indonesia",
+        a:"live"
+      },
+
+      {
+        q:"A: Good morning\nB: Good ___",
+        a:"morning"
+      },
+
+      {
+        q:"A: See you tomorrow\nB: See you ___",
+        a:"tomorrow"
+      },
+
+      {
+        q:"A: How old are you?\nB: I am 18 years ___",
+        a:"old"
+      },
+
+      {
+        q:"A: Do you like football?\nB: Yes, I ___",
+        a:"do"
+      },
+
+      {
+        q:"A: Thank you\nB: You are ___",
+        a:"welcome"
+      },
+
+      {
+        q:"A: What are you doing?\nB: I am ___",
+        a:"studying"
+      },
+
+      {
+        q:"A: Goodbye\nB: Bye bye, see you ___",
+        a:"later"
+      }
+
+    ]
+
+  };
+
+  let currentMode = "";
+  let currentLevel = 0;
+  let score = 0;
+
+  function openPage(pageId){
+
+    let pages =
+      document.querySelectorAll(".page");
+
+    pages.forEach(page=>{
+      page.classList.remove("active");
+    });
+
+    document.getElementById(pageId)
+      .classList.add("active");
+  }
+
+  function checkAccount(){
+
+    let savedUser =
+      localStorage.getItem("username");
+
+    if(savedUser){
+
+      document.getElementById("loginUser")
+        .innerHTML =
+        "Username : <b>" +
+        savedUser +
+        "</b>";
+
+      openPage("login");
+
+    }else{
+
+      openPage("register");
+    }
+  }
+
+  function register(){
+
+    let username =
+      document.getElementById("registerName")
+      .value;
+
+    let password =
+      document.getElementById("registerPassword")
+      .value;
+
+    if(username == "" || password == ""){
+
+      alert("Isi semua data!");
+      return;
+    }
+
+    localStorage.setItem(
+      "username",
+      username
+    );
+
+    localStorage.setItem(
+      "password",
+      password
+    );
+
+    alert("Akun berhasil dibuat!");
+
+    openPage("login");
+  }
+
+  function login(){
+
+    let savedPassword =
+      localStorage.getItem("password");
+
+    let inputPassword =
+      document.getElementById("loginPassword")
+      .value;
+
+    if(inputPassword == savedPassword){
+
+      alert("Login Berhasil!");
+
+      openPage("welcome");
+
+    }else{
+
+      alert("Password Salah!");
+    }
+  }
+
+  function startGame(mode){
+
+    currentMode = mode;
+
+    currentLevel = 0;
+
+    score = 0;
+
+    openPage("game");
+
+    showQuestion();
+  }
+
+  function showQuestion(){
+
+    document.getElementById("level")
+      .innerHTML =
+      "Level " + (currentLevel + 1);
+
+    document.getElementById("question")
+      .innerHTML =
+      gameData[currentMode][currentLevel].q;
+
+    document.getElementById("score")
+      .innerHTML =
+      "Skor : " + score;
+  }
+
+  function checkAnswer(){
+
+    let userAnswer =
+      document.getElementById("answer")
+      .value
+      .toLowerCase()
+      .trim();
+
+    let correctAnswer =
+      gameData[currentMode][currentLevel]
+      .a;
+
+    if(userAnswer == correctAnswer){
+
+      document.getElementById("result")
+        .innerHTML =
+        "✅ Jawaban Benar";
+
+      score += 10;
+
+    }else{
+
+      document.getElementById("result")
+        .innerHTML =
+        "❌ Salah! Jawaban : " +
+        correctAnswer;
+    }
+
+    currentLevel++;
+
+    document.getElementById("answer")
+      .value = "";
+
+    if(currentLevel < 10){
+
+      setTimeout(()=>{
+
+        showQuestion();
+
+        document.getElementById("result")
+          .innerHTML = "";
+
+      },1000);
+
+    }else{
+
+      setTimeout(()=>{
+
+        document.getElementById("question")
+          .innerHTML =
+          "🏆 GAME SELESAI";
+
+        document.getElementById("result")
+          .innerHTML =
+          "Skor Akhir : " + score;
+
+      },1000);
+    }
+  }
+
+</script>
+
+</body>
+</html>
